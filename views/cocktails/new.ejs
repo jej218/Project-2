@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Cocktail</title>
+</head>
+
+<body>
+    <h1> New Cocktail</h1>
+    <form action="/cocktails" method="POST" id='new-form'>
+        <label>Name:
+            <input type="text" name="name">
+        </label>
+        <label for='family-select'>Cocktail Family:
+            <select name='family' id='airport-select' form='new-form'>
+                <option value='Complex Highball'>Complex Highball</option>
+                <option value='Complex Sour'>Complex Sour</option>
+                <option value='Dessert' selected>Dessert</option>
+                <option value='Highball'>Highball</option>
+                <option value='Miscellaneous'>Miscellaneous</option>
+                <option value='Simple Highball' selected>Simple Highball</option>
+                <option value='Simple Sour'>Simple</option>
+                <option value='Sour'>Sour</option>
+                <option value='Tropical'>Tropical</option> 
+            </select>
+        </label>
+        <label for='glass-select'>Cocktail Family:
+            <select name='glass' id='glass-select' form='new-form'>
+                <option value='Collins'>Collins</option>
+                <option value='Coupe'>Coupe</option>
+                <option value='Highball' selected>Highball</option>
+                <option value='Hurricane'>Hurricane</option>
+                <option value='Margarita'>Margarita</option>
+                <option value='Martini' selected>Martini</option>
+                <option value='Old Fashioned'>Old Fashioned</option>
+                <option value='Pint'>Pint</option>
+                <option value='Toddy'>Toddy</option> 
+                <option value='Wine'>Wine</option>
+                <option value='N/A'>N/A</option> 
+            </select>
+        </label>
+
+        <label for='directions-input'>Directions:
+            <textarea name='directions' id='directions-input' form='new-form' rows="5" cols="33">
+            </textarea>
+        </label>
+        <input type="submit" value="Add Cocktail">
+    </form>
+
+
+</body>
+
+</html>

@@ -14,7 +14,10 @@ require('dotenv').config();
 // create the Express appj
 var app = express();
 
-var indexRoutes = require('./routes/index');
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var cocktailRouter = require('./routes/cocktails');
+var reviewsRouter = require('./routes/reviews')
 
 
 // connect to the MongoDB with mongoose
@@ -53,12 +56,15 @@ app.use(function(req, res, next) {
 });
 
 // mount all routes with appropriate base paths
-app.use('/', indexRoutes);
+app.use('/', indexRouter);
+app.use('/', usersRouter);
+app.use('/cocktails', cocktailRouter);
+app.use('/', reviewsRouter);
 
 
-// invalid request, send 404 page
 app.use(function(req, res) {
     res.status(404).send('Cant find that!');
 });
+
 
 module.exports = app;
