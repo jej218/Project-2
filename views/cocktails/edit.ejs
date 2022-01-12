@@ -1,5 +1,5 @@
 <%- include('../partials/header') %>
-        <form action="/cocktails/<%=cocktail._id%>" method="PUT" id='edit-cocktail-form'>
+        <form action="/cocktails/<%=cocktail._id%>?_method=PUT" method="POST" id='edit-cocktail-form'>
             <label>Name:</label>
             <input type="text" name="name" value='<%= cocktail.name %>'>
             <label for='family-select'>Cocktail Family:</label>
@@ -29,7 +29,7 @@
                 <option value='N/A'>N/A</option>
             </select>
             <label for='directions-input'>Directions:</label>
-            <textarea name='directions' id='directions-input' form='new-form' rows="5" cols="33">
+            <textarea name='directions' id='directions-input' form='edit-cocktail-form' rows="5" cols="33">
                 <%= cocktail.directions %> 
             </textarea>
             <input type="submit" value="Edit Cocktail">

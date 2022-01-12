@@ -6,6 +6,9 @@
                         Edit <%= cocktail.name %>
                     </a>
                 </h4>
+                <form action='/cocktails/<%= cocktail._id %>?_method=DELETE' method='POST' id='delete-cocktail-form'>
+                    <button type="submit">DELETE COCKTAIL</button>
+                </form>
             <% } %>
         <% } %>
         <h2><%=cocktail.family %></h2>

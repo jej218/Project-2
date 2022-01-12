@@ -6,7 +6,8 @@ module.exports = {
     show,
     create,
     edit,
-    update
+    update,
+    delete: deleteCocktail
 }
 
 function index(req, res, next) {
@@ -52,7 +53,6 @@ function show(req, res) {
 }
 
 function edit(req, res) {
-    console.log(req.params.id + '<--------req.params.id');
     Cocktail.findById(req.params.id, function(err, cocktail) {
         if (!cocktail.creatorId.equals(req.user._id)) return res.redirect('/cocktails');
         res.render('cocktails/edit', {
@@ -60,9 +60,17 @@ function edit(req, res) {
             title: 'Edit Cocktail',
             pageHeader: `Edit ${cocktail.name}`
         });
-    })
+    });
 }
 
 function update(req, res) {
+    Cocktail.findByIdAndUpdate(req.params.id, req.body, {new: true, runValidators: true}, function(err, cocktail){
+        res.redirect(`/cocktails/${cocktail._id}`);
+    })
+}
 
+function deleteCocktail(req, res) {
+    Cocktail.findByIdAndRemove(req.params.id, function(err){
+        res.redirect('/cocktails');
+    });
 }

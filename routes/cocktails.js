@@ -7,5 +7,6 @@ router.get('/:id', cocktailsCtrl.show);
 router.get('/:id/edit', cocktailsCtrl.edit);
 router.put('/:id', cocktailsCtrl.update);
 router.post('/', cocktailsCtrl.create);
+router.delete('/:id', cocktailsCtrl.delete);
 
 module.exports = router;
