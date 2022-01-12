@@ -1,9 +1,9 @@
 <%- include('../partials/header') %>
-        <form action="/cocktails" method="POST" id='new-cocktail-form'>
+        <form action="/cocktails/<%=cocktail._id%>" method="PUT" id='edit-cocktail-form'>
             <label>Name:</label>
-            <input type="text" name="name">
+            <input type="text" name="name" value='<%= cocktail.name %>'>
             <label for='family-select'>Cocktail Family:</label>
-            <select name='family' id='family-select' form='new-cocktail-form'>
+            <select name='family' id='family-select' form='edit-cocktail-form'>
                 <option value='Complex Highball'>Complex Highball</option>
                 <option value='Complex Sour'>Complex Sour</option>
                 <option value='Dessert' selected>Dessert</option>
@@ -15,7 +15,7 @@
                 <option value='Tropical'>Tropical</option>
             </select>
             <label for='glass-select'>Cocktail Family:</label>
-            <select name='glass' id='glass-select' form='new-cocktail-form'>
+            <select name='glass' id='glass-select' form='edit-cocktail-form'>
                 <option value='Collins'>Collins</option>
                 <option value='Coupe'>Coupe</option>
                 <option value='Highball' selected>Highball</option>
@@ -29,8 +29,10 @@
                 <option value='N/A'>N/A</option>
             </select>
             <label for='directions-input'>Directions:</label>
-            <textarea name='directions' id='directions-input' form='new-cocktail-form' rows="5" cols="33"></textarea>
-            <input type="submit" value="Add Cocktail">
+            <textarea name='directions' id='directions-input' form='new-form' rows="5" cols="33">
+                <%= cocktail.directions %> 
+            </textarea>
+            <input type="submit" value="Edit Cocktail">
         </form>
     </body>
 </html>

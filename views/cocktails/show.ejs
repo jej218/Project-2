@@ -1,79 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%=cocktail.name %>
-    </title>
-</head>
-
-<body>
-    <h1>
-        Welcome
-        <%=user.name %>
-    </h1>
-    <h1>
-        <%=cocktail.name %>
-    </h1>
-    <h2>
-        <%=cocktail.family %>
-    </h2>
-    <h3>
-        <%=cocktail.glass %>
-    </h3>
-    <p>
-        <%= cocktail.directions %>
-    </p>
-
-    <h2>Reviews:</h2>
-    <ul>
-        <% cocktail.reviews.forEach(function(r) { %>
-            <li>
-                <%= r.userName %> -
-                    <%=r.rating %>/5 -
-                        <%=r.text %>
-                            -
-                            <%= r.createdAt.toDateString().slice(4) %>
-                                -
-                                <%= r.userId %>
-                                    <%= user._id %>
-                                        <% if (r.userId.equals(user._id)) { %>
-                                            <form action='/reviews/<%= r._id %>?_method=DELETE' method='POST' id='delete-review-form'>
-                                                <button type='submit'>X</button>
-                                            </form>
-                                            <% } %>
-            </li>
-            <% }) %>
-    </ul>
-    <% if (!cocktail.reviews.find(review => review.userId.equals(user._id))) { %>
-        <form id="add-review-form" method="POST" action="/cocktails/<%= cocktail._id %>/reviews">
-            <label for='add-text-input'>
-            <textarea name='text' id='add-text-input' form='add-review-form' rows="5" cols="33">
-            </textarea>
-        </label>
-            <br>
-            <label for='add-rating-input'>Rating 0 to 5
-            <input type='number' name='rating' id='add-rating-input' form='add-review-form' min='0' max='5' step='1' required>
-        </label>
-            <input type='submit' value='Add Review'>
-        </form>
+<%- include('../partials/header') %>
+        <% if (user) { %>
+            <% if (user._id.equals(cocktail.creatorId)) { %>
+                <h4>
+                    <a href='/cocktails/<%= cocktail._id%>/edit'>
+                        Edit <%= cocktail.name %>
+                    </a>
+                </h4>
+            <% } %>
         <% } %>
-            <% else  { %>
-                <form id="edit-review-form" method="POST" action="/reviews/<%cocktail.reviews.find(review => review.userId.equals(user._id))._id %>?_method=PUT">
-                    <label for='edit-text-input'>
-            <textarea name='text' id='edit-text-input' form='edit-review-form' rows="5" cols="33">
-            </textarea>
-        </label>
-                    <br>
-                    <label for='edit-rating-input'>Rating 0 to 5
-            <input type='number' name='rating' id='edit-rating-input' form='edit-review-form' min='0' max='5' step='1' required>
-        </label>
-                    <input type='submit' value='Add Review'>
-                </form>
-                <% } %>
-</body>
-
+        <h2><%=cocktail.family %></h2>
+        <h3><%=cocktail.glass %></h3>
+        <p><%= cocktail.directions %></p>
+        <h2>Reviews:</h2>
+        <h3> Average Rating:</h3><!--FIXME:-->
+        <ul>
+            <% cocktail.reviews.forEach(function(r) { %>
+                <li>
+                    <%= r.userName %> -
+                    <%=r.rating %>/5 -
+                    <%=r.text %>
+                    -
+                    <%= r.createdAt.toDateString().slice(4) %>
+                    <% if (user) { %>
+                        <% if (r.userId.equals(user._id)) { %>
+                            <form action='/reviews/<%= r._id %>?_method=DELETE' method='POST' id='delete-review-form'>
+                                <button type='submit'>X</button>
+                            </form>
+                        <% } %>
+                    <% } %>
+                </li>
+            <% }) %>
+        </ul>
+        <% if (user) { %>
+            <% if (!cocktail.reviews.find(review=> review.userId.equals(user._id))) { %>
+                <fieldset>
+                    <legend>User Review</legend>
+                    <form id="add-review-form" method="POST" action="/cocktails/<%= cocktail._id %>/reviews">
+                        <textarea name='text' id='add-text-input' form='add-review-form' rows="5" cols="33"></textarea>
+                        <br>
+                        <label for='add-rating-input'>Rating 0 to 5</label>
+                        <input type='number' name='rating' id='add-rating-input' form='add-review-form' min='0' max='5' step='1'
+                        required>
+                        <input type='submit' value='Add Review'>
+                    </form>
+                </fieldset>
+            <% } else { %>
+                <!--User has existing review on cocktail-->
+                <fieldset>
+                    <legend>User Review</legend>
+                    <form id="edit-review-form" method="POST" action="/reviews/<%=cocktail.reviews.find(review => review.userId.equals(user._id))._id %>?_method=PUT">
+                        <textarea name='text' id='edit-text-input' form='edit-review-form' rows="5" cols="33">
+                        <%= cocktail.reviews.find(review => review.userId.equals(user._id)).text %>
+                        </textarea>
+                        <br>
+                        <label for='edit-rating-input'>Rating 0 to 5</label>
+                        <input type='number' name='rating' id='edit-rating-input' form='edit-review-form' min='0' max='5' step='1' required value='<%= cocktail.reviews.find(review => review.userId.equals(user._id)).rating %>'>
+                        <input type='submit' value='Edit Review'>
+                    </form>
+                </fieldset>
+            <% } %>
+        <% } %>
+    </body>
 </html>

@@ -40,7 +40,11 @@ const cocktailSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    reviews: [reviewSchema]
+    reviews: [reviewSchema],
+    creatorId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
 }, {
     timestamps: true
 });

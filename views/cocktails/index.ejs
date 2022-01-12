@@ -1,56 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cocktails</title>
-</head>
-
-<body>
-    <h1>
-        Welcome
-        <%= user.name %>
-    </h1>
-    <a href="/cocktails/new">ADD COCKTAIL</a>
-    <h1>Cocktail list</h1>
-    <table id='list'>
-        <thead>
-            <tr>
-                <th>Cocktail</th>
-                <th>Family</th>
-                <th>Glass</th>
-                <th>Rating</th>
-                <th>Your history</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% cocktails.forEach(c => { %>
+<%- include('../partials/header') %>
+        <table id='list'>
+            <thead>
                 <tr>
-                    <td>
-                        <a href='/cocktails/<%= c._id %>'>
-                            <%=c.name %>
-                        </a>
-                    </td>
-                    <td>
-                        <%= c.family %>
-                    </td>
-                    <td>
-                        <%= c.glass %>
-                    </td>
-                    <td>
-                        <%= c.reviews %>
-                            <!-- FIXME: -->
-                    </td>
-                    <td>
-                        History
-                        <!-- FIXME: -->
-                    </td>
+                    <th>Cocktail</th>
+                    <th>Family</th>
+                    <th>Glass</th>
+                    <th>Rating</th>
+                    <th>Your history</th>
                 </tr>
+            </thead>
+            <tbody>
+                <% cocktails.forEach(c => { %>
+                    <tr>
+                        <td>
+                            <a href='/cocktails/<%= c._id %>'>
+                                <%=c.name %>
+                            </a>
+                        </td>
+                        <td>
+                            <%= c.family %>
+                        </td>
+                        <td>
+                            <%= c.glass %>
+                        </td>
+                        <td>
+                           Ratings info goes here <!--FIXME:-->
+                        </td>
+                        <td>
+                            History<!-- FIXME: -->
+                        </td>
+                    </tr>
                 <% }) %>
-        </tbody>
-    </table>
-</body>
-
+            </tbody>
+        </table>
+    </body>
 </html>
