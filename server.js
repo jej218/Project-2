@@ -17,7 +17,8 @@ var app = express();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var cocktailRouter = require('./routes/cocktails');
-var reviewsRouter = require('./routes/reviews')
+var reviewsRouter = require('./routes/reviews');
+var ingredientRouter = require('./routes/ingredients');
 
 
 // connect to the MongoDB with mongoose
@@ -60,6 +61,7 @@ app.use('/', indexRouter);
 app.use('/', usersRouter);
 app.use('/cocktails', cocktailRouter);
 app.use('/', reviewsRouter);
+app.use('/ingredients', ingredientRouter);
 
 
 app.use(function(req, res) {

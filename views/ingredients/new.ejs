@@ -1,0 +1,12 @@
+<%- include('../partials/header') %>
+<form action="/ingredients" method="POST" id='new-ingredient-form'>
+    <label>Name:</label>
+    <input type="text" name="name">
+    <label>Is the Ingredient a liquid?:</label>
+    <input type='checkbox' id='isLiquid' name='isLiquid' value='true' checked>
+    <label for='description-input'>Description:</label>
+    <textarea name='description' id='description-input' form='new-ingredient-form' rows="5" cols="33"></textarea>
+    <input type="submit" value="Add Ingredient">
+</form>
+</body>
+</html>

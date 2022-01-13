@@ -17,7 +17,7 @@ function index(req, res, next) {
             cocktails: cocktailDocuments,
             title: 'Cocktails',
             pageHeader: 'Cocktails'
-        })
+        });
     })
 }
 
@@ -36,9 +36,8 @@ function create(req, res) {
             title: 'New Cocktail',
             pageHeader: 'Add a new Cocktail'
         });
-        console.log(cocktail + '<------- New Cocktail'); //FIXME:
         res.redirect('/cocktails');
-    })
+    });
 }
 
 function show(req, res) {

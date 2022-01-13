@@ -1,0 +1,33 @@
+<%- include('../partials/header') %>
+<table id='list'>
+    <thead>
+        <tr>
+            <th>Ingredient</th>
+            <th>No. Cocktails</th>
+            <th>No. Listed Bottles</th>
+            <th>Average Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% ingredients.forEach(i => { %>
+            <tr>
+                <td>
+                    <a href='/ingredients/<%= i._id %>'>
+                        <%=i.name %>
+                    </a>
+                </td>
+                <td>
+                    # Cocktails goes here <!--FIXME:-->
+                </td>
+                <td>
+                    # Listed bottles goes here <!--FIXME:-->
+                </td>
+                <td>
+                   Ratings info goes here <!--FIXME:-->
+                </td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
+</body>
+</html>
