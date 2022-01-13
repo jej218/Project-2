@@ -11,8 +11,9 @@ module.exports = {
     delete: deleteCocktail
 }
 
+// Renders Cocktail index page, showing all the cocktail documents
+// Link provided from site-wide navbar
 function index(req, res, next) {
-
     Cocktail.find({}, function(err, cocktailDocuments) {
         res.render('cocktails/index', {
             cocktails: cocktailDocuments,
@@ -22,6 +23,7 @@ function index(req, res, next) {
     })
 }
 
+// Renders the New Cocktail page - link provided from site-wide navbar
 function newCocktail(req, res) {
     res.render('cocktails/new', {
         title: 'New Cocktail',
@@ -29,7 +31,10 @@ function newCocktail(req, res) {
     });
 }
 
+// Creates a cocktail from the New Cocktail Page - form submission from
+// new cocktail page
 function create(req, res) {
+    // 
     req.body.creatorId = req.user._id;
     const cocktail = new Cocktail(req.body);
     cocktail.save(function(err) {
