@@ -27,14 +27,12 @@ const cocktailSchema = new mongoose.Schema({
         enum: ['Ancestral', 'Beer', 'Bloody', 'Champagne', 'Collins', 'Complex Highball', 'Complex Sour',
             'Dessert', 'Duo', 'Fizz', 'Flip', 'Frozen', 'Highball', 'Hot Drink', 'Julep', 'Milk',
             'Miscellaneous', 'Nog', 'Pousse', 'Shot', 'Simple Highball', 'Simple Sour', 'Sour',
-            'Spirit Forward', 'Trio', 'Tropical', 'Wine'
-        ]
+            'Spirit Forward', 'Trio', 'Tropical', 'Wine']
     },
     glass: {
         type: String,
         enum: ['Collins', 'Coupe', 'Flute', 'Highball', 'Hurricane', 'Julep Tin', 'Margarita', 'Martini',
-            'Mug', 'Nick & Nora', 'Old Fashioned', 'Pint', 'Shot', 'Sling', 'Tiki', 'Toddy', 'Wine', 'N/A'
-        ]
+            'Mug', 'Nick & Nora', 'Old Fashioned', 'Pint', 'Shot', 'Sling', 'Tiki', 'Toddy', 'Wine', 'N/A']
     },
     directions: {
         type: String,
@@ -45,8 +43,7 @@ const cocktailSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    ingredients: 
-        [{
+    ingredients: [{
                 ingredient: {
                     type: mongoose.Schema.Types.ObjectId,
                     ref: 'Ingredient'
@@ -58,7 +55,7 @@ const cocktailSchema = new mongoose.Schema({
                 amount: {
                     type: Number
                 }
-        }]
+    }]
 }, {
     timestamps: true
 });
