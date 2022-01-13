@@ -1,13 +1,15 @@
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
-
-const bottleSchema = new Schema({
+const bottleSchema = new mongoose.Schema({
     name: String,
-    description: String
-})
+    description: String,
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
+});
 
-const ingredientSchema = new Schema({
+const ingredientSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -17,10 +19,13 @@ const ingredientSchema = new Schema({
         required: true
     },
     creatorId: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    description: String
+    description: String,
+    bottles: [bottleSchema]
+}, {
+    timestamps: true
 });
 
 module.exports = mongoose.model('Ingredient', ingredientSchema);

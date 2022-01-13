@@ -1,0 +1,12 @@
+<%- include('../partials/header') %>
+<form action="/ingredients/<%= ingredient._id %>?_method=PUT" method="POST" id='edit-ingredient-form'>
+    <label>Name:</label>
+    <input type="text" name="name" value='<%= ingredient.name %>'>
+    <label for='description-input'>Description:</label>
+    <textarea name='description' id='description-input' form='edit-ingredient-form' rows="5" cols="33">
+        <%= ingredient.description %> 
+    </textarea>
+    <input type="submit" value="Edit Ingredient">
+</form>
+</body>
+</html>

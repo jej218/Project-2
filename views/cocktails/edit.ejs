@@ -1,4 +1,6 @@
 <%- include('../partials/header') %>
+    <fieldset>
+        <legend>Edit Cocktail Details</legend>
         <form action="/cocktails/<%=cocktail._id%>?_method=PUT" method="POST" id='edit-cocktail-form'>
             <label>Name:</label>
             <input type="text" name="name" value='<%= cocktail.name %>'>
@@ -14,7 +16,7 @@
                 <option value='Sour'>Sour</option>
                 <option value='Tropical'>Tropical</option>
             </select>
-            <label for='glass-select'>Cocktail Family:</label>
+            <label for='glass-select'>Cocktail Glass:</label>
             <select name='glass' id='glass-select' form='edit-cocktail-form'>
                 <option value='Collins'>Collins</option>
                 <option value='Coupe'>Coupe</option>
@@ -34,5 +36,6 @@
             </textarea>
             <input type="submit" value="Edit Cocktail">
         </form>
+    </fieldset>
     </body>
 </html>

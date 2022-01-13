@@ -15,10 +15,11 @@ require('dotenv').config();
 var app = express();
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var userRouter = require('./routes/users');
 var cocktailRouter = require('./routes/cocktails');
-var reviewsRouter = require('./routes/reviews');
+var reviewRouter = require('./routes/reviews');
 var ingredientRouter = require('./routes/ingredients');
+var bottleRouter = require('./routes/bottles');
 
 
 // connect to the MongoDB with mongoose
@@ -58,10 +59,11 @@ app.use(function(req, res, next) {
 
 // mount all routes with appropriate base paths
 app.use('/', indexRouter);
-app.use('/', usersRouter);
+app.use('/', userRouter);
 app.use('/cocktails', cocktailRouter);
-app.use('/', reviewsRouter);
-app.use('/ingredients', ingredientRouter);
+app.use('/', reviewRouter);
+app.use('/', ingredientRouter);
+app.use('/', bottleRouter)
 
 
 app.use(function(req, res) {

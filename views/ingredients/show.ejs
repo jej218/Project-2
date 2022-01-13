@@ -1,9 +1,56 @@
 <%- include('../partials/header') %>
+<% if (user) { %>
+    <% if (user._id.equals(ingredient.creatorId)) { %>
+        <h4>
+            <a href='/ingredients/<%= ingredient._id%>/edit'>
+                Edit <%= ingredient.name %>
+            </a>
+        </h4>
+    <% } %>
+<% } %>
 <h3>
     <%= ingredient.description %> 
 </h3>
 <h3> Average Rating:</h3><!--FIXME:-->
-<h3> List of Cocktails:</h3> <!--FIXME:-->
-<h3> List of Bottles:</h3> <!--FIXME:-->
+<% if (cocktails) { %>
+<h3> List of Cocktails:</h3>
+    <ul>
+        <% cocktails.forEach(c => { %>
+            <li>
+                <a href='/cocktails/<%= c._id %>'>
+                    <%= c.name %> 
+                </a>
+            </li>
+        <% }) %>
+    </ul>
+<% } %>
+<h3> List of Bottles:</h3>
+<ul>
+    <% ingredient.bottles.forEach(function(b) { %>
+        <li>
+            <%= b.name %> - 
+            <%= b.description %>
+            <% if (user) { %>
+                <% if (b.userId.equals(user._id)) { %>
+                    <form action='/bottles/<%= b._id %>?_method=DELETE' method='POST' id='delete-bottle-form'>
+                        <button type='submit'>X</button>
+                    </form>
+                <% } %>
+            <% } %>
+        </li>
+    <% }) %> 
+</ul>
+<% if (user) { %>
+    <fieldset>
+        <legend>Add a Bottle</legend>
+        <form id='add-bottle-form' method='POST' action='/ingredients/<%= ingredient._id %>/bottles'>
+            <label>Bottle Name</label>
+            <input type='text' name='name' id='add-name-input' form='add-bottle-form' required>
+            <label>Description</label>
+            <textarea name='description' id='add-description-input' form='add-bottle-form' rows='5' cols='33'></textarea>
+            <input type='submit' value='Add Bottle'>
+        </form>
+    </fieldset>
+<% } %>
 </body>
 </html>

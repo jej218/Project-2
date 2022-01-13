@@ -44,7 +44,21 @@ const cocktailSchema = new mongoose.Schema({
     creatorId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }
+    },
+    ingredients: 
+        [{
+                ingredient: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: 'Ingredient'
+                },
+                quantityName: {
+                    type: String,
+                    required: true
+                },
+                amount: {
+                    type: Number
+                }
+        }]
 }, {
     timestamps: true
 });

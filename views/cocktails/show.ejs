@@ -14,6 +14,42 @@
         <h2><%=cocktail.family %></h2>
         <h3><%=cocktail.glass %></h3>
         <p><%= cocktail.directions %></p>
+        <h2>Ingredients:</h2>
+        <ul>
+            <% cocktail.ingredients.forEach(i => { %>
+                <li>
+                    <%= i.amount %> 
+                    <%= i.quantityName %>
+                    <a href='/ingredients/<%= i.ingredient._id %>'>
+                        <%= i.ingredient.name %>  
+                    </a>
+                </li>
+                <% if (user) { %>
+                    <% if (user._id.equals(cocktail.creatorId)) { %>
+                        <form action='/cocktails/<%= cocktail._id %>/ingredients/<%= i._id %>?_method=DELETE' method='POST' id='delete-ingredient-from-cocktail-form'>
+                            <button type="submit">REMOVE INGREDIENT</button>
+                        </form>
+                    <% } %>
+                <% } %>
+            <% }) %>
+        </ul>
+        <% if (user) { %>
+            <% if (user._id.equals(cocktail.creatorId)) { %>
+                <fieldset>
+                    <legend>Add an Ingredient to the cocktail:</legend>
+                    <form id='add-ingredient-to-cocktail' action='/cocktails/<%= cocktail._id %>/ingredients' method="POST">
+                        <select name="ingredient">
+                            <%- ingredientsList.map(i => `<option value="${i._id}">${i.name}</option>`).join('') %>
+                        </select>
+                        <label>Name of Ingredient Quantity (Oz, Part, Leafs, etc)</label>
+                        <input type='text' name='quantityName'>
+                        <label>Amount of Ingredient</label>
+                        <input type='number' name='amount' step='any' min='0'>
+                        <button type="submit">Add to Cocktail</button>
+                    </form>
+                </fieldset>
+            <% } %>
+        <% } %>
         <h2>Reviews:</h2>
         <h3> Average Rating:</h3><!--FIXME:-->
         <ul>
@@ -42,8 +78,7 @@
                         <textarea name='text' id='add-text-input' form='add-review-form' rows="5" cols="33"></textarea>
                         <br>
                         <label for='add-rating-input'>Rating 0 to 5</label>
-                        <input type='number' name='rating' id='add-rating-input' form='add-review-form' min='0' max='5' step='1'
-                        required>
+                        <input type='number' name='rating' id='add-rating-input' form='add-review-form' min='0' max='5' step='1' required>
                         <input type='submit' value='Add Review'>
                     </form>
                 </fieldset>

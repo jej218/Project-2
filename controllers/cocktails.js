@@ -1,4 +1,5 @@
 const Cocktail = require('../models/cocktail');
+const Ingredient = require('../models/ingredient');
 
 module.exports = {
     index,
@@ -41,14 +42,17 @@ function create(req, res) {
 }
 
 function show(req, res) {
-    Cocktail.findById(req.params.id, function(err, cocktail) {
-        
-        res.render('cocktails/show', {
-            cocktail: cocktail,
-            title: cocktail.name,
-            pageHeader: cocktail.name
+    Cocktail.findById(req.params.id).populate('ingredients.ingredient').exec(function(err, cocktail) {
+            Ingredient.find({})
+                .exec(function(err, ingredientsList) {
+                    res.render('cocktails/show', {
+                        cocktail: cocktail,
+                        title: cocktail.name,
+                        pageHeader: cocktail.name,
+                        ingredientsList: ingredientsList
+                    });
+                });
         });
-    });
 }
 
 function edit(req, res) {
