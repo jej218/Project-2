@@ -1,34 +1,51 @@
-# passport-boilerplate
+# Cocktail Review Database
+----------------------
 
+Background Information
+----------------------
+- My brother and sister and law have a tradition of reviewing cocktails.
+- This database hopes to serve as a web-app to replace my brother's curent Excel sheet.
+- HTML![Screen Shot 2022-01-14 at 9 09 20 AM](https://user-images.githubusercontent.com/94415423/149556204-42324e28-839d-4e1d-b501-77febbab8caa.png)
+- I also added a second full model for ingredients, and another subdocument for varieties of ingredients, to add a little extra information and ease for browsing.
 
-This is your passport boilerplate.
+Screenshots
+---------------------
+- [Screen Shot 2022-01-14 at 9 12 14 AM](https://user-images.githubusercontent.com/94415423/149556583-1a591b5f-434a-4533-9944-060674254ddd.png)
+- Cocktail Show Page
+- ![Screen Shot 2022-01-14 at 9 32 03 AM](https://user-images.githubusercontent.com/94415423/149559414-e7b46dbd-2394-475e-b388-7af5923c55ac.png)
+- Landing Page
 
-## Setup 
+Technologies
+---------------------
+- Mongoose
+- MongoDb
+- Node
+- Javascript
+- HTML
+- CSS
 
-1. Clone the repo
-2. Rename the folder to your Project
-3. Delete the `.git` file, when you are in the root of the file, you can press `ls` and you should see a `.git` file, then go ahead and run `rm -rf .git`
+Getting Started
+---------------------
+- Link to the site: [https://cocktail-review-database.herokuapp.com/]
+- Login with google to access Create/Review permissions.
+- Review existing cocktails! Look for friends' reviews.
+- Browse cocktails or ingredients.
+- Add your favorite 'variety' to an ingredient page.
+- Further Goals:
 
-
-#### Setup your git repo
-1. in the project root `git init`
-2. `git add .` to add all the starter code
-3. `git commit -m "setup boilerplate"` 
-4. go to github and create your github and create a repo (Without a readme or liscense you can add that later!)
-5. copy the remote address
-6. In your terminal add the remote `git remote add origin yourGithubRepo'sAddressGoesHere`
-7. `git pull origin master` If a screen pulls up asking you to do something just press `:q` and then `enter` (thats vim btw :) )
-8. `git push origin master`
-
-#### Setup your login
-
-0. Setup your database connection string
-1. Then Setup Your User Model, 
-2. Follow the steps from the lesson plan to get your Google login credentials for your `.env` file (create the file if you haven't), or you can just copy the ones from earlier if you want to reuse them.
-3. Setup the Code in your config passport 
-4. Setup your callback routes in your `routes/index`
-5. Setup a view and test your login!
-
-#### Make a commit 
-
-```git commit -m "setup up oauth and User Model"```
+Icebox Goals
+---------------------
+- AAU I want to be able to view a page displaying information about my account, including my reviews, cocktails, and drinks created
+- Improve Async functionality
+- Prevent duplicate documents
+- Refactor code with smoother model and query methods
+- Restrict list of ingredients to add to cocktail to only ones not yet added
+- AAU I want to be able to sort lists of data by certain values in the table
+- AAU I want to be able to view a page displaying information about my account, including my reviews, cocktails, and drinks created
+- AAU I want to be able to view information about the amount of each bottle, and only list the bottle on it's ingredient page if it isn't empty
+- AAU I want to be able to view a page recommending which bottles to use for a particular cocktail, including the bottle if it has been 'recommended' for this cocktail and isn't empty
+- AAU I want to be able to run a process to indicate to the app that I have made a cocktail with certain bottles, updating the bottle information as necessary regarding the used amounts
+- AAU I want to be able to add a list of bottles from one page, belonging to potentially multiple ingredients, and have the corresponding information be updated correctly
+- AAU I want to be able to add, edit, and delete a bottles for my wish list, which will not interact or be listed otherwise. Also I want to view other user's wish lists
+- AAU I want to be able to delete bottles from other user's wish lists to indicate it has been purchased, also adding it into the general database.
+- AAU I want to be able to look at a visual display of where the bottles are in relation to a real world cabinet, having them highlighted if they are selected for a drink
