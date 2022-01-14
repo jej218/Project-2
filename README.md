@@ -5,7 +5,7 @@ Background Information
 ----------------------
 - My brother and sister and law have a tradition of reviewing cocktails.
 - This database hopes to serve as a web-app to replace my brother's curent Excel sheet.
-- HTML![Screen Shot 2022-01-14 at 9 09 20 AM](https://user-images.githubusercontent.com/94415423/149556204-42324e28-839d-4e1d-b501-77febbab8caa.png)
+- ![Screen Shot 2022-01-14 at 9 09 20 AM](https://user-images.githubusercontent.com/94415423/149556204-42324e28-839d-4e1d-b501-77febbab8caa.png)
 - I also added a second full model for ingredients, and another subdocument for varieties of ingredients, to add a little extra information and ease for browsing.
 
 Screenshots
