@@ -10,7 +10,7 @@ Background Information
 
 Screenshots
 ---------------------
-- [Screen Shot 2022-01-14 at 9 12 14 AM](https://user-images.githubusercontent.com/94415423/149556583-1a591b5f-434a-4533-9944-060674254ddd.png)
+- ![Screen Shot 2022-01-14 at 9 12 14 AM](https://user-images.githubusercontent.com/94415423/149556583-1a591b5f-434a-4533-9944-060674254ddd.png)
 - Cocktail Show Page
 - ![Screen Shot 2022-01-14 at 9 32 03 AM](https://user-images.githubusercontent.com/94415423/149559414-e7b46dbd-2394-475e-b388-7af5923c55ac.png)
 - Landing Page
