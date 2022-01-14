@@ -10,7 +10,7 @@
                 </tr>
             </thead>
             <tbody>
-                <% cocktails.forEach(c => { %>
+                <% cocktails.forEach(function(c, i){ %>
                     <tr>
                         <td>
                             <a href='/cocktails/<%= c._id %>'>
@@ -24,10 +24,22 @@
                             <%= c.glass %>
                         </td>
                         <td>
-                           Ratings info goes here <!--FIXME:-->
+                            <% if (cocktailAverageRatings[i] >= 0) { %>
+                                <%= cocktailAverageRatings[i] %> 
+                            <% } else { %>
+                                No Ratings Yet!
+                            <% } %> 
                         </td>
                         <td>
-                            History<!-- FIXME: -->
+                            <% if (user) { %>
+                                <% if (firstReviewedDates[i]) { %>
+                                    First reviewed <%= firstReviewedDates[i].toDateString().slice(4) %> 
+                                <% } else { %>
+                                    Not yet Reviewed
+                                <% } %>
+                            <% } else { %>
+                                Login to view history
+                            <% } %>
                         </td>
                     </tr>
                 <% }) %>

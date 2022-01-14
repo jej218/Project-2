@@ -1,5 +1,6 @@
 const Cocktail = require('../models/cocktail');
 const Ingredient = require('../models/ingredient');
+const Reviews = require('./reviews');
 
 module.exports = {
     index,
@@ -15,10 +16,50 @@ module.exports = {
 // Link provided from site-wide navbar
 function index(req, res, next) {
     Cocktail.find({}, function (err, cocktailDocuments) {
+        // block of code to create an array of average ratings for each cocktail
+        // and also to find user history with cocktails
+
+        // initializes helper variables
+        let cocktailAverageRatings = [];
+        let sum = 0;
+        let averageRating = -1;
+        let firstReviewedDates = [];
+        let usersReview; 
+        // for each cocktail
+        cocktailDocuments.forEach(function(c){
+            // reset sum and average to starting values
+            sum = 0;
+            averageRating = -1;
+            // parse through each review in the cocktail
+            c.reviews.forEach(function(r) {
+                // summing the ratings
+                sum += r.rating;
+            });
+            // if the cocktail's review isn't empty, calculate its average
+            if(c.reviews.length > 0) averageRating = sum / c.reviews.length;
+            // push the average to the array of averages
+            cocktailAverageRatings.push(averageRating);
+            // checks if active user is logged in
+            if(req.user){
+                // sets interim review variable to the user's review for the cocktail
+                // undefined if the user has left no review
+                usersReview = c.reviews.find(r => r.userId.equals(req.user._id));
+                // if the review exists push it's createdAt date to the array
+                if(usersReview){
+                    firstReviewedDates.push(usersReview.createdAt);
+                }
+                // otherwise push usersReview (undefined)
+                else{
+                    firstReviewedDates.push(usersReview);
+                }
+            }   
+        });
         res.render('cocktails/index', {
             cocktails: cocktailDocuments,
             title: 'Cocktails',
-            pageHeader: 'Cocktails'
+            pageHeader: 'Cocktails',
+            cocktailAverageRatings:  cocktailAverageRatings,
+            firstReviewedDates: firstReviewedDates
         });
     })
 }
@@ -62,12 +103,19 @@ function show(req, res) {
         // find all the ingredients to pass to res.render as ingredientsList
         // this is the list of ingredients to show in the add ingredients menu
         Ingredient.find({}).exec(function (err, ingredientsList) {
+            let sum = 0;
+            cocktail.reviews.forEach(function(r){
+                sum += r.rating;
+            });
+            let averageRating = -1;
+            if(cocktail. reviews.length > 0) averageRating = sum / cocktail.reviews.length;
             // render cocktails show page
             res.render('cocktails/show', {
                 cocktail: cocktail,
                 title: cocktail.name,
                 pageHeader: cocktail.name,
-                ingredientsList: ingredientsList
+                ingredientsList: ingredientsList,
+                averageRating: averageRating
             });
         });
     });

@@ -51,7 +51,9 @@
             <% } %>
         <% } %>
         <h2>Reviews:</h2>
-        <h3> Average Rating:</h3><!--FIXME:-->
+        <% if (cocktail.reviews.length > 0) { %>
+            <h3>Average Rating: <%= averageRating %> </h3>
+        <% } %>
         <ul>
             <% cocktail.reviews.forEach(function(r) { %>
                 <li>

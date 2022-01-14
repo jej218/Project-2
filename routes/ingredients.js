@@ -10,6 +10,7 @@ router.put('/ingredients/:id', ingredientsCtrl.update);
 router.post('/ingredients', ingredientsCtrl.create);
 router.post('/cocktails/:id/ingredients', ingredientsCtrl.addToCocktail);
 router.delete('/cocktails/:id/ingredients/:id', ingredientsCtrl.removeFromCocktail);
+router.delete('/ingredients/:id', ingredientsCtrl.delete);
 
 
 module.exports = router;

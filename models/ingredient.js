@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const bottleSchema = new mongoose.Schema({
+const varietySchema = new mongoose.Schema({
     name: String,
     description: String,
     userId: {
@@ -14,16 +14,12 @@ const ingredientSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    isLiquid: {
-        type: Boolean,
-        required: true
-    },
     creatorId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
     description: String,
-    bottles: [bottleSchema]
+    varieties: [varietySchema]
 }, {
     timestamps: true
 });

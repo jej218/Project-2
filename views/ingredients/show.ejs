@@ -6,33 +6,45 @@
                 Edit <%= ingredient.name %>
             </a>
         </h4>
+        <% if (cocktails.length === 0) { %>
+            <form action='/ingredients/<%= ingredient._id %>?_method=DELETE' method='POST' id='delete-ingredient-form'>
+                <button type="submit">DELETE INGREDIENT</button>
+            </form>
+        <% } %>
     <% } %>
 <% } %>
 <h3>
     <%= ingredient.description %> 
 </h3>
-<h3> Average Rating:</h3><!--FIXME:-->
-<% if (cocktails) { %>
-<h3> List of Cocktails:</h3>
-    <ul>
-        <% cocktails.forEach(c => { %>
-            <li>
-                <a href='/cocktails/<%= c._id %>'>
-                    <%= c.name %> 
-                </a>
-            </li>
-        <% }) %>
-    </ul>
+<% if (cocktails.length > 0) { %>
+    <% if (overallAverage) { %>
+        <h3> Ingredient Average Rating: </h3>
+        <%= overallAverage %> 
+    <% } %>
+    <h3> List of Cocktails:</h3>
+        <ul>
+            <% cocktails.forEach(function(c, i) { %>
+                <li>
+                    <a href='/cocktails/<%= c._id %>'>
+                        <%= c.name %> 
+                    </a>
+                    <% if (c.reviews.length > 0) { %>
+                        - Avg Rating: 
+                        <%= cocktailAverageRatings[i] %> 
+                    <% } %>
+                </li>
+            <% }) %>
+        </ul>
 <% } %>
-<h3> List of Bottles:</h3>
+<h3> List of Varieties:</h3>
 <ul>
-    <% ingredient.bottles.forEach(function(b) { %>
+    <% ingredient.varieties.forEach(function(b) { %>
         <li>
             <%= b.name %> - 
             <%= b.description %>
             <% if (user) { %>
                 <% if (b.userId.equals(user._id)) { %>
-                    <form action='/bottles/<%= b._id %>?_method=DELETE' method='POST' id='delete-bottle-form'>
+                    <form action='/varieties/<%= b._id %>?_method=DELETE' method='POST' id='delete-variety-form'>
                         <button type='submit'>X</button>
                     </form>
                 <% } %>
@@ -42,13 +54,13 @@
 </ul>
 <% if (user) { %>
     <fieldset>
-        <legend>Add a Bottle</legend>
-        <form id='add-bottle-form' method='POST' action='/ingredients/<%= ingredient._id %>/bottles'>
-            <label>Bottle Name</label>
-            <input type='text' name='name' id='add-name-input' form='add-bottle-form' required>
+        <legend>Add a Variety</legend>
+        <form id='add-variety-form' method='POST' action='/ingredients/<%= ingredient._id %>/varieties'>
+            <label>Variety Name</label>
+            <input type='text' name='name' id='add-name-input' form='add-variety-form' required>
             <label>Description</label>
-            <textarea name='description' id='add-description-input' form='add-bottle-form' rows='5' cols='33'></textarea>
-            <input type='submit' value='Add Bottle'>
+            <textarea name='description' id='add-description-input' form='add-variety-form' rows='5' cols='33'></textarea>
+            <input type='submit' value='Add Variety'>
         </form>
     </fieldset>
 <% } %>

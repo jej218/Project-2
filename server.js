@@ -19,7 +19,7 @@ var userRouter = require('./routes/users');
 var cocktailRouter = require('./routes/cocktails');
 var reviewRouter = require('./routes/reviews');
 var ingredientRouter = require('./routes/ingredients');
-var bottleRouter = require('./routes/bottles');
+var varietyRouter = require('./routes/varieties');
 
 
 // connect to the MongoDB with mongoose
@@ -63,7 +63,7 @@ app.use('/', userRouter);
 app.use('/cocktails', cocktailRouter);
 app.use('/', reviewRouter);
 app.use('/', ingredientRouter);
-app.use('/', bottleRouter)
+app.use('/', varietyRouter)
 
 
 app.use(function(req, res) {

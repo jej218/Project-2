@@ -4,26 +4,30 @@
         <tr>
             <th>Ingredient</th>
             <th>No. Cocktails</th>
-            <th>No. Listed Bottles</th>
+            <th>No. Listed Varieties</th>
             <th>Average Rating</th>
         </tr>
     </thead>
     <tbody>
-        <% ingredients.forEach(i => { %>
+        <% ingredients.forEach(function(ingredient, index) { %>
             <tr>
                 <td>
-                    <a href='/ingredients/<%= i._id %>'>
-                        <%=i.name %>
+                    <a href='/ingredients/<%= ingredient._id %>'>
+                        <%=ingredient.name %>
                     </a>
                 </td>
                 <td>
-                    # Cocktails goes here <!--FIXME:-->
+                    <%= numCocktails[index] %> 
                 </td>
                 <td>
-                    # Listed bottles goes here <!--FIXME:-->
+                    <%= ingredient.varieties.length %> 
                 </td>
                 <td>
-                   Ratings info goes here <!--FIXME:-->
+                    <% if (ratings[index]) { %>
+                        <%= ratings[index] %> 
+                    <% } else { %>
+                        No Ratings Yet!
+                    <% } %>
                 </td>
             </tr>
         <% }) %>
